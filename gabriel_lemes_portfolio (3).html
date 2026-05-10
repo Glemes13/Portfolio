@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gabriel Lemes - IT Portfolio">
+    <title>Gabriel Lemes | IT Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:         #2e3a47;
+            --bg2:        #36444f;
+            --surface:    #3d4f5e;
+            --border:     #4a5f70;
+            --accent:     #3b82f6;
+            --accent2:    #60a5fa;
+            --text:       #e2e8f0;
+            --text-muted: #7a909e;
+            --white:      #ffffff;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body:    'DM Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+            background-image: radial-gradient(circle, #1e2d3d 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(12, 12, 15, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            color: var(--white);
+            text-decoration: none;
+            padding: 20px 0;
+            margin-right: auto;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+        }
+
+        nav ul { list-style: none; display: flex; gap: 2px; }
+
+        nav ul li a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 20px 14px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.25s;
+            cursor: pointer;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 14px;
+            left: 14px;
+            right: 14px;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.25s ease;
+            border-radius: 2px;
+        }
+
+        nav ul li a:hover { color: var(--white); }
+        nav ul li a:hover::after { transform: scaleX(1); }
+        nav ul li a.active { color: var(--white); }
+        nav ul li a.active::after { transform: scaleX(1); }
+
+        /* --- Pages --- */
+        .page { display: none; animation: fadeUp 0.5s ease both; }
+        .page.active { display: block; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===================== HOME PAGE ===================== */
+        .hero {
+            min-height: calc(100vh - 61px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 100px 48px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 32px;
+            height: 2px;
+            background: var(--accent);
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3.2rem, 7vw, 6rem);
+            font-weight: 900;
+            line-height: 1.05;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .hero > p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin-bottom: 44px;
+            font-weight: 300;
+        }
+
+        .btn-group { display: flex; gap: 14px; flex-wrap: wrap; }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.2px;
+            transition: all 0.25s;
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-primary:hover { background: transparent; color: var(--accent); }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 90px 48px;
+        }
+
+        hr.divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0 48px;
+        }
+
+        .section-eyebrow {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-eyebrow::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
+            display: inline-block;
+        }
+
+        .section-title-home {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 48px;
+            line-height: 1.2;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px 26px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+        }
+
+        .card-icon { font-size: 1.6rem; margin-bottom: 14px; }
+        .card h3 { color: var(--white); font-size: 1rem; font-weight: 500; margin-bottom: 8px; }
+        .card p  { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; }
+
+        .about-strip {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 48px;
+            display: flex;
+            gap: 44px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-strip img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            flex-shrink: 0;
+        }
+
+        .about-strip .text h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .about-strip .text p  { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 8px; }
+        .about-strip .text a  { color: var(--accent); text-decoration: none; cursor: pointer; }
+        .about-strip .text a:hover { text-decoration: underline; }
+
+        /* ===================== SUBPAGES SHARED ===================== */
+        .page-header {
+            background: linear-gradient(160deg, var(--bg2) 0%, #181826 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 70px 48px 60px;
+        }
+
+        .page-header-inner { max-width: 1100px; margin: 0 auto; }
+
+        .page-eyebrow {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-eyebrow::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
+            display: inline-block;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.1;
+        }
+
+        .page-header p { color: var(--text-muted); margin-top: 10px; font-size: 1rem; font-weight: 300; }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 70px 48px 100px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .content-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .content-box p, .content-box li { color: var(--text-muted); font-size: 0.95rem; }
+        .content-box a { color: var(--accent); text-decoration: none; cursor: pointer; }
+        .content-box a:hover { text-decoration: underline; }
+
+        /* ===================== ABOUT ===================== */
+        .about-intro {
+            display: flex;
+            gap: 44px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 40px;
+        }
+
+        .about-intro img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            flex-shrink: 0;
+        }
+
+        .about-intro .bio { flex: 1; min-width: 250px; }
+
+        .about-intro .bio h2 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .about-intro .bio .role {
+            color: var(--accent);
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .about-intro .bio p { color: var(--text-muted); margin-bottom: 10px; }
+        .about-intro .bio a { color: var(--accent); text-decoration: none; }
+        .about-intro .bio a:hover { text-decoration: underline; }
+
+        .interest-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .interest-item:last-child { border-bottom: none; }
+        .interest-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+        .interest-item h4 { color: var(--white); font-weight: 500; margin-bottom: 4px; }
+        .interest-item p  { color: var(--text-muted); font-size: 0.9rem; }
+        .interest-item a  { color: var(--accent); text-decoration: none; }
+        .interest-item a:hover { text-decoration: underline; }
+
+        /* ===================== RESUME ===================== */
+        .resume-block { margin-bottom: 50px; }
+
+        .resume-block h3 {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resume-block h3::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .resume-item { display: flex; gap: 24px; margin-bottom: 28px; }
+
+        .resume-item .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        .resume-item .details h4 { color: var(--white); font-weight: 500; margin-bottom: 4px; }
+
+        .resume-item .details span {
+            font-size: 0.82rem;
+            color: var(--accent2);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .resume-item .details p { color: var(--text-muted); font-size: 0.9rem; }
+        .resume-item .details a { color: var(--accent); text-decoration: none; cursor: pointer; }
+        .resume-item .details a:hover { text-decoration: underline; }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        .skills-list li {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 18px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.25s;
+        }
+
+        .skills-list li:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ===================== PROJECTS ===================== */
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 32px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--accent);
+            border-radius: 4px 0 0 4px;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before { transform: scaleY(1); }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateX(6px);
+            box-shadow: 0 10px 30px rgba(59,130,246,0.1);
+        }
+
+        .project-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .project-card p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 16px; }
+
+        .tag {
+            display: inline-block;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 4px 14px;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            margin-right: 6px;
+            margin-bottom: 4px;
+        }
+
+        /* ===================== CONTACT ===================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .contact-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .contact-card .icon { font-size: 1.6rem; flex-shrink: 0; }
+
+        .contact-card h4 {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .contact-card a, .contact-card p {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+        }
+
+        .contact-card a:hover { color: var(--white); }
+
+        /* ===================== FOOTER ===================== */
+        footer {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 28px 40px;
+            font-size: 0.84rem;
+            color: var(--text-muted);
+        }
+
+        footer a { color: var(--accent); text-decoration: none; cursor: pointer; }
+        footer a:hover { text-decoration: underline; }
+
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width: 700px) {
+            nav .nav-inner { padding: 0 18px; flex-wrap: wrap; }
+            nav ul { gap: 0; flex-wrap: wrap; }
+            nav ul li a { padding: 14px 10px; font-size: 0.78rem; }
+            .hero { padding: 60px 20px; }
+            section { padding: 60px 20px; }
+            main { padding: 40px 20px 80px; }
+            .page-header { padding: 50px 20px 40px; }
+            .about-strip { padding: 28px 20px; }
+            .about-intro { padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <span class="nav-logo" onclick="showPage('home')">Gabriel Lemes</span>
+            <ul>
+                <li><a id="nav-home"     class="active" onclick="showPage('home')">Home</a></li>
+                <li><a id="nav-about"               onclick="showPage('about')">About</a></li>
+                <li><a id="nav-resume"              onclick="showPage('resume')">Resume</a></li>
+                <li><a id="nav-projects"            onclick="showPage('projects')">Projects</a></li>
+                <li><a id="nav-contact"             onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==================== HOME ==================== -->
+    <div id="page-home" class="page active">
+
+        <div class="hero">
+            <p class="hero-eyebrow">IT Management Student &amp; Solutions Specialist</p>
+            <h1>Hi, I&rsquo;m<br><em>Gabriel Lemes.</em></h1>
+            <p>Multilingual in four languages &mdash; bridging technology, data &amp; people across cultures.</p>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="showPage('projects')">View My Work</button>
+                <button class="btn btn-outline" onclick="showPage('contact')">Get In Touch</button>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <section>
+            <p class="section-eyebrow">What I Do</p>
+            <h2 class="section-title-home">Skills &amp; Strengths</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">&#127760;</div>
+                    <h3>4 Languages</h3>
+                    <p>Native in Portuguese &amp; English, professional in French &amp; Spanish &mdash; communicating across cultures with ease.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#128202;</div>
+                    <h3>Data &amp; Analytics</h3>
+                    <p>Python, SQL, Excel pivot tables &amp; data visualization &mdash; turning raw data into actionable insights.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#128101;</div>
+                    <h3>Client Relations</h3>
+                    <p>High-volume customer-facing experience at Verizon &amp; Uniqlo, maintaining quality and professionalism under pressure.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#128218;</div>
+                    <h3>Always Learning</h3>
+                    <p>Google Data Analytics, HarvardX Data Science, AI &mdash; continuously growing my technical skill set.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <section>
+            <p class="section-eyebrow">Who I Am</p>
+            <h2 class="section-title-home">A Little About Me</h2>
+            <div class="about-strip">
+                <img src="https://glemes13.github.io/Portfolio/1754266292170.jpg" alt="Profile photo of Gabriel Lemes">
+                <div class="text">
+                    <h3>Gabriel Lemes</h3>
+                    <p>I&rsquo;m an Information Technology student passionate about web development, networking, and cybersecurity. I love working on hands-on projects that challenge me to apply classroom concepts to real-world scenarios.</p>
+                    <p>Outside of class, I explore new technologies and work on personal projects. Check out what I&rsquo;ve been building on the <a onclick="showPage('projects')">Projects</a> page.</p>
+
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Gabriel Lemes &bull; IT Management &bull; <a onclick="showPage('contact')">Contact Me</a></p>
+        </footer>
+    </div>
+
+    <!-- ==================== ABOUT ==================== -->
+    <div id="page-about" class="page">
+
+        <div class="page-header">
+            <div class="page-header-inner">
+                <p class="page-eyebrow">Who I Am</p>
+                <h1>About Me</h1>
+                <p>Get to know the person behind the portfolio</p>
+            </div>
+        </div>
+
+        <main>
+            <div class="about-intro">
+                <img src="https://glemes13.github.io/Portfolio/1754266292170.jpg" alt="Photo of Gabriel Lemes, IT student">
+                <div class="bio">
+                    <h2>Gabriel Lemes</h2>
+                    <span class="role">IT Management &mdash; Data, Communication &amp; Cross-Cultural Collaboration</span>
+                    <p>Hello! I&rsquo;m Gabriel, an IT Management student at UMass Boston with a passion for data analytics, technology, and multilingual communication. I thrive in diverse, fast-paced environments where I can bridge people and systems.</p>
+                    <p>Currently working as a Solutions Specialist at Verizon in Brookline, MA &mdash; managing high-volume client interactions, coordinating administrative workflows, and reporting with Microsoft Excel on a daily basis.</p>
+                    <p>I speak Portuguese and English natively, and French and Spanish at a professional level &mdash; a skill I actively use to connect with people from all backgrounds.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">My Interests</h2>
+            <div class="content-box">
+                <div class="interest-item">
+                    <div class="interest-icon">&#128202;</div>
+                    <div>
+                        <h4>Data Analytics</h4>
+                        <p>From Python and SQL to pivot tables and visualization &mdash; I love turning messy data into clear, actionable stories. Currently deepening this through Google Data Analytics and HarvardX Data Science.</p>
+                    </div>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">&#127760;</div>
+                    <div>
+                        <h4>Multilingual Communication</h4>
+                        <p>Speaking four languages (PT/EN/FR/ES) isn&rsquo;t just a skill &mdash; it&rsquo;s how I build genuine connections. I coordinated multilingual outreach campaigns at BRASA and use this ability daily in my current role.</p>
+                    </div>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">&#129302;</div>
+                    <div>
+                        <h4>Artificial Intelligence</h4>
+                        <p>Fascinated by how AI is reshaping industries. Completed an Introduction to AI course at Collin College and actively exploring real-world applications in business and IT management.</p>
+                    </div>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">&#128218;</div>
+                    <div>
+                        <h4>Continuous Learning</h4>
+                        <p>A 3.5 GPA, certifications on Coursera, and courses at Harvard &mdash; I believe growth never stops. I&rsquo;m always pursuing the next challenge, whether academic or professional.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Languages</h2>
+            <div class="content-box">
+                <div class="interest-item">
+                    <div class="interest-icon">&#127463;&#127479;</div>
+                    <div>
+                        <h4>Portuguese &mdash; Native / Bilingual</h4>
+                        <p>My mother tongue. I communicate, write, and present at full professional capacity in Portuguese.</p>
+                    </div>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">&#127482;&#127480;</div>
+                    <div>
+                        <h4>English &mdash; Native / Bilingual</h4>
+                        <p>Fully bilingual. All of my academic and professional work in the US is conducted in English.</p>
+                    </div>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">&#127467;&#127479;</div>
+                    <div>
+                        <h4>French &mdash; Professional</h4>
+                        <p>Professional working proficiency. Used actively in cross-cultural outreach and multilingual campaigns.</p>
+                    </div>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">&#127466;&#127480;</div>
+                    <div>
+                        <h4>Spanish &mdash; Professional</h4>
+                        <p>Professional working proficiency. Strong comprehension and communication across Latin American and Spanish contexts.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Gabriel Lemes &bull; IT Management &bull; <a onclick="showPage('contact')">Contact Me</a></p>
+        </footer>
+    </div>
+
+    <!-- ==================== RESUME ==================== -->
+    <div id="page-resume" class="page">
+
+        <div class="page-header">
+            <div class="page-header-inner">
+                <p class="page-eyebrow">My Background</p>
+                <h1>Resume</h1>
+                <p>Education, experience &amp; skills at a glance</p>
+            </div>
+        </div>
+
+        <main>
+            <div class="resume-block">
+                <h3>Education</h3>
+                <div class="resume-item">
+                    <div class="dot"></div>
+                    <div class="details">
+                        <h4>Bachelor of Management, Information Technology</h4>
+                        <span>Expected 06/2027 &mdash; University of Massachusetts Boston, Boston, MA</span>
+                        <p>Focusing on IT management, data systems, and cross-functional communication. Maintaining a 3.5 GPA.</p>
+                    </div>
+                </div>
+                <div class="resume-item">
+                    <div class="dot"></div>
+                    <div class="details">
+                        <h4>Associate of Science, General Studies</h4>
+                        <span>Graduated 12/2025 &mdash; Collin College, Plano, TX</span>
+                        <p>Graduated December 2025. Completed coursework in Computer Science and Introduction to Artificial Intelligence.</p>
+                    </div>
+                </div>
+                <div class="resume-item">
+                    <div class="dot"></div>
+                    <div class="details">
+                        <h4>Some College &mdash; Computer Science</h4>
+                        <span>University of North Texas, Denton, TX &mdash; 3.5 GPA</span>
+                        <p>Studied Computer Science fundamentals while actively involved in student organizations on campus.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-block">
+                <h3>Courses</h3>
+                <ul class="skills-list">
+                    <li>Google Data Analytics (Python, SQL, Visualization) &mdash; Coursera, 2025&ndash;2026</li>
+                    <li>HarvardX Data Science: Inference &amp; Modeling, 2025</li>
+                    <li>Introduction to Artificial Intelligence &mdash; Collin College, 2024</li>
+                </ul>
+            </div>
+
+            <div class="resume-block">
+                <h3>Technical Skills</h3>
+                <p style="color:var(--text-muted); font-size:0.82rem; letter-spacing:1px; text-transform:uppercase; margin-bottom:12px;">Tools &amp; Technologies</p>
+                <ul class="skills-list">
+                    <li>Microsoft Excel (Pivot Tables)</li><li>Microsoft Word</li><li>Microsoft Outlook</li>
+                    <li>Microsoft Teams</li><li>Python</li><li>SQL</li><li>Data Visualization</li><li>Social Media Management</li>
+                </ul>
+                <br>
+                <p style="color:var(--text-muted); font-size:0.82rem; letter-spacing:1px; text-transform:uppercase; margin-bottom:12px;">Professional Skills</p>
+                <ul class="skills-list">
+                    <li>Cross-functional Collaboration</li><li>Stakeholder Communication</li>
+                    <li>Data Entry &amp; Reporting</li><li>Statistical Analysis</li>
+                    <li>Process Mapping</li><li>Cross-cultural Communication</li>
+                    <li>Attention to Detail &amp; Discretion</li>
+                </ul>
+                <br>
+                <p style="color:var(--text-muted); font-size:0.82rem; letter-spacing:1px; text-transform:uppercase; margin-bottom:12px;">Languages</p>
+                <ul class="skills-list">
+                    <li>&#127463;&#127479; Portuguese &mdash; Native</li>
+                    <li>&#127482;&#127480; English &mdash; Native</li>
+                    <li>&#127467;&#127479; French &mdash; Professional</li>
+                    <li>&#127466;&#127480; Spanish &mdash; Professional</li>
+                </ul>
+            </div>
+
+            <div class="resume-block">
+                <h3>Experience</h3>
+                <div class="resume-item">
+                    <div class="dot"></div>
+                    <div class="details">
+                        <h4>Solutions Specialist</h4>
+                        <span>01/2026 &mdash; Present &bull; Verizon, Brookline, Massachusetts</span>
+                        <p>Manage high-volume client-facing interactions while maintaining accurate account records and consistent service quality. Coordinate administrative workflows including data entry, performance tracking, and reporting using Microsoft Excel. Maintain meticulous documentation and correspondence across client accounts in compliance with company standards.</p>
+                    </div>
+                </div>
+                <div class="resume-item">
+                    <div class="dot"></div>
+                    <div class="details">
+                        <h4>Sales Associate</h4>
+                        <span>09/2025 &mdash; 12/2025 &bull; Uniqlo USA, Boston, Massachusetts</span>
+                        <p>Supported daily floor operations by coordinating tasks across team members. Collaborated cross-functionally with leads and peers to execute day-to-day priorities and maintain high service standards. Tracked sales trends and reported performance data to support team decision-making in a fast-paced, high-volume environment.</p>
+                    </div>
+                </div>
+                <div class="resume-item">
+                    <div class="dot"></div>
+                    <div class="details">
+                        <h4>Student Outreach Coordinator</h4>
+                        <span>08/2024 &mdash; 05/2025 &bull; BRASA at University of North Texas, Denton, TX</span>
+                        <p>Coordinated multilingual outreach campaigns across four languages, managing communications and engagement tracking for a diverse student community. Analyzed campaign data to identify performance gaps and refine outreach execution, delivering structured reports to organizational leadership. Facilitated cross-cultural communication between student groups and institutional stakeholders.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-block">
+                <h3>Projects</h3>
+                <div class="resume-item">
+                    <div class="dot"></div>
+                    <div class="details">
+                        <h4>Digital Marketing Project &lsquo;Orma&rsquo;</h4>
+                        <span>03/2021 &mdash; 06/2022</span>
+                        <p>Analyzed engagement metrics across multilingual campaigns, building reports to identify performance trends and inform data-driven content and outreach decisions across four languages.</p>
+                    </div>
+                </div>
+                <div class="resume-item">
+                    <div class="dot"></div>
+                    <div class="details">
+                        <h4>Personal Portfolio Website</h4>
+                        <span>2025 &mdash; Present</span>
+                        <p>Designed and developed this multi-page portfolio website from scratch using HTML5 &amp; CSS3. Hosted on GitHub Pages at <a href="https://glemes13.github.io/Portfolio/" target="_blank">glemes13.github.io/Portfolio</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Gabriel Lemes &bull; IT Management &bull; <a onclick="showPage('contact')">Contact Me</a></p>
+        </footer>
+    </div>
+
+    <!-- ==================== PROJECTS ==================== -->
+    <div id="page-projects" class="page">
+
+        <div class="page-header">
+            <div class="page-header-inner">
+                <p class="page-eyebrow">My Work</p>
+                <h1>Projects</h1>
+                <p>A showcase of what I&rsquo;ve built &amp; learned</p>
+            </div>
+        </div>
+
+        <main>
+            <h2 class="section-title">Featured Projects</h2>
+
+            <div class="project-card">
+                <h3>&#128200; Digital Marketing Project &lsquo;Orma&rsquo;</h3>
+                <p>Analyzed engagement metrics across multilingual campaigns in four languages (PT/EN/FR/ES), building structured reports to identify performance trends and inform data-driven content decisions. Delivered insights to organizational leadership to guide outreach strategy.</p>
+                <span class="tag">Data Analysis</span><span class="tag">Multilingual</span><span class="tag">Reporting</span><span class="tag">Campaign Management</span>
+            </div>
+
+            <div class="project-card">
+                <h3>&#127760; Personal Portfolio Website</h3>
+                <p>Designed and developed this multi-page portfolio website from scratch using HTML5 &amp; CSS3. Focused on semantic markup, a consistent design system, and single-file architecture for easy deployment. Live at GitHub Pages.</p>
+                <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Web Design</span><span class="tag">GitHub Pages</span>
+            </div>
+
+            <div class="project-card">
+                <h3>&#128202; Google Data Analytics Certificate</h3>
+                <p>Currently completing Google&rsquo;s Data Analytics professional certificate via Coursera (2025&ndash;2026). Covering Python, SQL, data cleaning, visualization, and storytelling with data &mdash; applying skills to real-world case studies.</p>
+                <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Data Visualization</span><span class="tag">Coursera</span>
+            </div>
+
+            <div class="project-card">
+                <h3>&#127891; HarvardX Data Science: Inference &amp; Modeling</h3>
+                <p>Completed Harvard&rsquo;s online Data Science module focused on statistical inference, modeling, and interpreting data at scale. Applied concepts to understand real-world datasets and draw meaningful conclusions.</p>
+                <span class="tag">Statistics</span><span class="tag">Data Science</span><span class="tag">Harvard</span><span class="tag">Inference</span>
+            </div>
+
+            <div class="project-card">
+                <h3>&#128101; BRASA Multilingual Outreach Coordination</h3>
+                <p>As Student Outreach Coordinator at the University of North Texas, managed communications and engagement tracking for a diverse community across four languages. Analyzed campaign performance gaps and delivered structured reports to leadership.</p>
+                <span class="tag">Outreach</span><span class="tag">PT/EN/FR/ES</span><span class="tag">Reporting</span><span class="tag">Leadership</span>
+            </div>
+
+            <h2 class="section-title">Tools &amp; Resources I Use</h2>
+            <div class="content-box">
+                <p>Platforms and tools that support my work and studies:</p><br>
+                <div class="interest-item">
+                    <div class="interest-icon">&#128202;</div>
+                    <div>
+                        <h4><a href="https://www.coursera.org" target="_blank">Coursera</a></h4>
+                        <p>Where I&rsquo;m completing Google Data Analytics &mdash; high-quality, structured learning from top institutions.</p>
+                    </div>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">&#127891;</div>
+                    <div>
+                        <h4><a href="https://www.edx.org" target="_blank">edX / HarvardX</a></h4>
+                        <p>Platform for my Harvard Data Science module. Rigorous academic content made accessible online.</p>
+                    </div>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">&#128187;</div>
+                    <div>
+                        <h4><a href="https://github.com/Glemes13" target="_blank">GitHub</a></h4>
+                        <p>Where I host and version-control my projects, including this portfolio.</p>
+                    </div>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">&#128196;</div>
+                    <div>
+                        <h4><a href="https://www.linkedin.com/in/gabriellemes-it/" target="_blank">LinkedIn</a></h4>
+                        <p>My professional network &mdash; connect with me to follow my academic and career journey.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Gabriel Lemes &bull; IT Management &bull; <a onclick="showPage('contact')">Contact Me</a></p>
+        </footer>
+    </div>
+
+    <!-- ==================== CONTACT ==================== -->
+    <div id="page-contact" class="page">
+
+        <div class="page-header">
+            <div class="page-header-inner">
+                <p class="page-eyebrow">Let&rsquo;s Talk</p>
+                <h1>Contact</h1>
+                <p>Open to internships, collaborations &amp; new opportunities</p>
+            </div>
+        </div>
+
+        <main>
+            <h2 class="section-title">Get In Touch</h2>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="icon">&#9993;</div>
+                    <div>
+                        <h4>Email</h4>
+                        <a href="mailto:glemes2004@gmail.com">glemes2004@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">&#128222;</div>
+                    <div>
+                        <h4>Phone</h4>
+                        <a href="tel:4697689461">469-768-9461</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">&#128101;</div>
+                    <div>
+                        <h4>LinkedIn</h4>
+                        <a href="https://www.linkedin.com/in/gabriellemes-it/" target="_blank">linkedin.com/in/gabriellemes-it</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">&#128187;</div>
+                    <div>
+                        <h4>GitHub</h4>
+                        <a href="https://github.com/Glemes13" target="_blank">github.com/Glemes13</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">&#128205;</div>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Greater Boston, MA &mdash; Open to remote opportunities</p>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">&#127760;</div>
+                    <div>
+                        <h4>Languages</h4>
+                        <p>PT &bull; EN &bull; FR &bull; ES</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">A Note From Me</h2>
+            <div class="content-box">
+                <p>Whether you&rsquo;re a recruiter, a fellow student, or someone who wants to collaborate &mdash; don&rsquo;t hesitate to reach out. I&rsquo;m actively looking for opportunities in IT management, data analytics, and cross-cultural communication roles.</p>
+                <br>
+                <p>I communicate professionally in Portuguese, English, French, and Spanish &mdash; feel free to reach out in any of these languages.</p>
+                <br>
+                <p>You can also check out my work on the <a onclick="showPage('projects')">Projects page</a>, or review my background on the <a onclick="showPage('resume')">Resume page</a>.</p>
+                <br>
+                <p><em>I typically respond within 24&ndash;48 hours. &copy; 2025 Gabriel Lemes. All rights reserved.</em></p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Gabriel Lemes &bull; IT Management &bull; <a href="mailto:glemes2004@gmail.com">glemes2004@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function showPage(id) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // Remove active from all nav links
+            document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
+
+            // Show target page
+            const page = document.getElementById('page-' + id);
+            if (page) {
+                page.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Highlight correct nav link
+            const navLink = document.getElementById('nav-' + id);
+            if (navLink) navLink.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
